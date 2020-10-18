@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Container } from "react-bootstrap/";
-import Bookmark from './Bookmark'
+import Bookmark from './Bookmark';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
 
 class BookmarkList extends Component {
 
@@ -50,13 +52,21 @@ class BookmarkList extends Component {
           }
         ]
     }
+
+    handleStarRating = (rating) => {
+      let stars = [];
+      for(let i = 0; i < rating; i++){
+        stars.push(<FontAwesomeIcon icon={faStar} className="mx-1 text-warning" size="lg" />)
+      }
+      return stars
+    }
   render() {
     return (<Container>
       {this.state.bookmarks.map(bookmark => {
         return <Bookmark 
-          title={bookmark.title.toUpperCase()}
+          title={bookmark.title}
           url={bookmark.url}
-          rating={bookmark.rating}
+          rating={this.handleStarRating(bookmark.rating)}
           description={bookmark.desc} 
           id={bookmark.id}
           key={bookmark.id}

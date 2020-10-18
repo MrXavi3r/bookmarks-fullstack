@@ -10,11 +10,17 @@ const Bookmark = (props) => {
             variant="link"
             eventKey={props.id}
             as={Card.Header}
-            className="bg-light rounded"
+            className="bg-light rounded gr1 border bxs"
           >
             <Row>
-              <Col className="d-flex justify-content-start">{props.title}</Col>
-              <Col className="d-flex justify-content-end">{props.rating}</Col>
+              <Col className="d-flex justify-content-start align-items-center text-uppercase h5">
+                <a href={props.url} className="card-link text-secondary">
+                  {props.title}
+                </a>
+              </Col>
+              <Col className="d-flex justify-content-end align-items-center">
+                {props.rating}
+              </Col>
             </Row>
           </Accordion.Toggle>
           <Accordion.Collapse eventKey={props.id}>
