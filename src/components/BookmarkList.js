@@ -27,7 +27,7 @@ class BookmarkList extends Component {
     }
     return stars;
   };
-  render(props) {
+  render() {
     return (
       <Container>
         {this.props.bookmarks.map((bookmark) => {
@@ -40,6 +40,7 @@ class BookmarkList extends Component {
               description={bookmark.desc}
               id={bookmark.id}
               key={bookmark.id}
+              deleteBookmark={this.props.deleteBookmark}
             />
           );
         })}

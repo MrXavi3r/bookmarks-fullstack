@@ -3,6 +3,7 @@ import { Container, Row, Accordion, Card, Col } from "react-bootstrap/";
 import BookmarkExpand from "./BookmarkExpand";
 
 const Bookmark = (props) => {
+  
   return (
     <Container>
       <Row>
@@ -37,6 +38,7 @@ const Bookmark = (props) => {
               stars={props.stars}
               description={props.description}
               id={props.id}
+              deleteBookmark={props.deleteBookmark}
             />
           </Accordion.Collapse>
         </Accordion>
