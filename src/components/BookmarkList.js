@@ -46,7 +46,7 @@ class BookmarkList extends Component {
           {
             title: 'youtube',
             url: 'http://www.youtube.com',
-            rating: 5,
+            rating: 4,
             desc: 'this is youtube',
             id: 768776
           }
@@ -55,8 +55,12 @@ class BookmarkList extends Component {
 
     handleStarRating = (rating) => {
       let stars = [];
-      for(let i = 0; i < rating; i++){
-        stars.push(<FontAwesomeIcon icon={faStar} className="mx-1 text-warning" size="lg" />)
+      for(let i = 0; i < 5; i++){
+        if(i < rating){
+           stars.push(<FontAwesomeIcon icon={faStar} className="mx-1 text-warning" size="lg" key={i} />)
+        } else {
+          stars.push(<FontAwesomeIcon icon={faStar} className="mx-1" size="lg" key={i} />)
+        }
       }
       return stars
     }
@@ -66,7 +70,8 @@ class BookmarkList extends Component {
         return <Bookmark 
           title={bookmark.title}
           url={bookmark.url}
-          rating={this.handleStarRating(bookmark.rating)}
+          rating={bookmark.rating}
+          stars={this.handleStarRating(bookmark.rating)}
           description={bookmark.desc} 
           id={bookmark.id}
           key={bookmark.id}

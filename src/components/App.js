@@ -5,7 +5,7 @@ import BookmarkList from './BookmarkList';
 
 function App() {
   return (
-    <div className="App">
+    <div className="App container-lg">
       <Header />
       <BookmarkList />
     </div>

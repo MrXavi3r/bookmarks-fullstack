@@ -5,7 +5,7 @@ const Filter = () => {
   
   return (
     <DropdownButton
-      className="bxs rounded"
+      className="bxs rounded filter-btn text-dark"
       title="FILTER"
       id="dropdown-menu"
       size="lg"
