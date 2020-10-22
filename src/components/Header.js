@@ -27,7 +27,7 @@ class Header extends React.Component {
             <h3 className="mr-3 mb-0">+NEW</h3>
             <FontAwesomeIcon icon={faBookmark} size="2x" className="my-auto" />
           </Button>
-          <Filter />
+          <Filter filterBookmarks={this.props.filterBookmarks} ratingFilter={this.props.ratingFilter}/>
         </Row>
       </Container>
     );

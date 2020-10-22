@@ -39,6 +39,7 @@ const Bookmark = (props) => {
               description={props.description}
               id={props.id}
               deleteBookmark={props.deleteBookmark}
+              updateBookmark={props.updateBookmark}
             />
           </Accordion.Collapse>
         </Accordion>

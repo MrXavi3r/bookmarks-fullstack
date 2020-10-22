@@ -5,11 +5,27 @@ import BookmarkList from "./BookmarkList";
 import AddBookmark from "./AddBookmark";
 const { v4: uuidv4 } = require("uuid");
 
+const defaultBookmarks = [
+  {
+    title: "hard coded",
+    url: "someurl",
+    rating: 3,
+    desc: "desc",
+    id: 5667544556,
+  },
+];
 class App extends React.Component {
   state = {
     addingBookmark: false,
     bookmarks: [],
+    ratingFilter: 0
   };
+
+  componentDidMount() {
+    this.setState({
+      bookmarks: defaultBookmarks,
+    });
+  }
 
   handleAddNewBtnClicked = (event) => {
     event.preventDefault();
@@ -34,19 +50,17 @@ class App extends React.Component {
     let desc = document.getElementById("add-form-desc").value;
 
     let newBookmark = {
-      title: title,
-      url: url,
-      rating: rating,
-      desc: desc,
+      title,
+      url,
+      rating,
+      desc,
       id: uuidv4(),
     };
 
-    this.setState((prevState) => {
-      return {
-        bookmarks: [...prevState.bookmarks, newBookmark],
-      };
-    });
+    defaultBookmarks.push(newBookmark);
+
     this.setState({
+      bookmarks: defaultBookmarks,
       addingBookmark: false,
     });
   };
@@ -55,17 +69,57 @@ class App extends React.Component {
     event.preventDefault();
     let id = event.target.id;
 
-    this.setState((prevState) => {
+    this.setState({
+      bookmarks: defaultBookmarks.filter((bookmark) => bookmark.id !== +id),
+    });
+  };
+
+  handleUpdateBookmark = (id) => {
+    let title = document.getElementById("expanded-form-title").value;
+    let url = document.getElementById("expanded-form-url").value;
+    let rating = document.getElementById("expanded-form-rating").value;
+    let desc = document.getElementById("expanded-form-desc").value;
+
+    let patchBookmark = {
+      title,
+      url,
+      rating,
+      desc,
+      id,
+    };
+
+    this.setState(() => {
+      let bookArray = [...this.state.bookmarks];
+      Object.assign(
+        bookArray.find((book) => book.id === id),
+        patchBookmark
+      );
+      console.log(patchBookmark);
+
       return {
-        bookmarks: prevState.bookmarks.filter((bookmark) => bookmark.id !== id),
+        bookmarks: bookArray,
       };
+    });
+  };
+
+  handleFilterBookmarks = (rating) => {
+    
+    this.setState({
+      ratingFilter: rating || 0,
+      bookmarks: defaultBookmarks.filter(
+        (bookmark) => bookmark.rating >= rating
+      ),
     });
   };
 
   render() {
     return (
       <div className="App container-lg">
-        <Header addForm={this.handleAddNewBtnClicked} />
+        <Header
+          addForm={this.handleAddNewBtnClicked}
+          filterBookmarks={this.handleFilterBookmarks}
+          ratingFilter={this.state.ratingFilter}
+        />
         {this.state.addingBookmark ? (
           <AddBookmark
             addBookmark={this.handleAddNewBookmark}
@@ -75,6 +129,7 @@ class App extends React.Component {
         <BookmarkList
           bookmarks={this.state.bookmarks}
           deleteBookmark={this.handleDeleteBookmark}
+          updateBookmark={this.handleUpdateBookmark}
         />
       </div>
     );

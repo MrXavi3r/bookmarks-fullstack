@@ -41,6 +41,7 @@ class BookmarkList extends Component {
               id={bookmark.id}
               key={bookmark.id}
               deleteBookmark={this.props.deleteBookmark}
+              updateBookmark={this.props.updateBookmark}
             />
           );
         })}
