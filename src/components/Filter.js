@@ -19,7 +19,6 @@ const Filter = (props) => {
       id="dropdown-menu"
       size="lg"
       onSelect={(eventKey) => {
-        console.log(eventKey);
         props.filterBookmarks(eventKey);
       }}
       // as="select"

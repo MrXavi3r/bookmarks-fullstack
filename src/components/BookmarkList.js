@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Container } from "react-bootstrap/";
+import { Container, Accordion } from "react-bootstrap/";
 import Bookmark from "./Bookmark";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
@@ -30,6 +30,7 @@ class BookmarkList extends Component {
   render() {
     return (
       <Container>
+      <Accordion className="w-100 mx-auto">
         {this.props.bookmarks.map((bookmark) => {
           return (
             <Bookmark
@@ -40,11 +41,13 @@ class BookmarkList extends Component {
               description={bookmark.desc}
               id={bookmark.id}
               key={bookmark.id}
+              bookmarks={this.props.bookmarks}
               deleteBookmark={this.props.deleteBookmark}
               updateBookmark={this.props.updateBookmark}
             />
           );
         })}
+        </Accordion>
       </Container>
     );
   }

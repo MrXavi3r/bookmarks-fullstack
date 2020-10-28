@@ -7,12 +7,11 @@ const Bookmark = (props) => {
   return (
     <Container>
       <Row>
-        <Accordion className="w-100">
           <Accordion.Toggle
             variant="link"
-            eventKey={props.id}
+            eventKey={`${props.id}`}
             as={Card.Header}
-            className="bg-light rounded gr1 border-secondary bxs"
+            className="bg-light rounded gr1 border-secondary bxs w-100"
           >
             <Row>
               <Col className="d-flex justify-content-start align-items-center text-uppercase h5 mb-0">
@@ -30,7 +29,7 @@ const Bookmark = (props) => {
               </Col>
             </Row>
           </Accordion.Toggle>
-          <Accordion.Collapse eventKey={props.id}>
+          <Accordion.Collapse eventKey={`${props.id}`} className="w-100">
             <BookmarkExpand
               title={props.title}
               url={props.url}
@@ -40,9 +39,9 @@ const Bookmark = (props) => {
               id={props.id}
               deleteBookmark={props.deleteBookmark}
               updateBookmark={props.updateBookmark}
+              bookmarks={props.bookmarks}
             />
           </Accordion.Collapse>
-        </Accordion>
       </Row>
     </Container>
   );

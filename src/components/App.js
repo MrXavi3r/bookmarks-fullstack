@@ -10,15 +10,15 @@ const defaultBookmarks = [
     title: "hard coded",
     url: "someurl",
     rating: 3,
-    desc: "desc",
-    id: 5667544556,
+    desc: "description",
+    id: "566b-769j-khg0-986b-5hg6",
   },
 ];
 class App extends React.Component {
   state = {
     addingBookmark: false,
     bookmarks: [],
-    ratingFilter: 0
+    ratingFilter: 0,
   };
 
   componentDidMount() {
@@ -46,7 +46,7 @@ class App extends React.Component {
 
     let title = document.getElementById("add-form-title").value;
     let url = document.getElementById("add-form-url").value;
-    let rating = document.getElementById("add-form-rating").value;
+    let rating = +document.getElementById("add-form-rating").value;
     let desc = document.getElementById("add-form-desc").value;
 
     let newBookmark = {
@@ -65,30 +65,34 @@ class App extends React.Component {
     });
   };
 
+  // consider adding a ComponentWillUpdate or ComponentDidUpdate to App or Bookmark/bookmarkList component to fix this issue
   handleDeleteBookmark = (event) => {
     event.preventDefault();
     let id = event.target.id;
 
     this.setState({
-      bookmarks: defaultBookmarks.filter((bookmark) => bookmark.id !== +id),
+      bookmarks: this.state.bookmarks.filter((bookmark) => bookmark.id !== id),
     });
   };
 
   handleUpdateBookmark = (id) => {
+    console.log("handle update", id);
     let title = document.getElementById("expanded-form-title").value;
     let url = document.getElementById("expanded-form-url").value;
-    let rating = document.getElementById("expanded-form-rating").value;
+    let rating = +document.getElementById("expanded-form-rating").value;
     let desc = document.getElementById("expanded-form-desc").value;
+
 
     let patchBookmark = {
       title,
       url,
       rating,
       desc,
-      id,
     };
 
+
     this.setState(() => {
+      console.log('set state')
       let bookArray = [...this.state.bookmarks];
       Object.assign(
         bookArray.find((book) => book.id === id),
@@ -103,7 +107,6 @@ class App extends React.Component {
   };
 
   handleFilterBookmarks = (rating) => {
-    
     this.setState({
       ratingFilter: rating || 0,
       bookmarks: defaultBookmarks.filter(

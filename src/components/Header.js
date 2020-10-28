@@ -5,9 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserTag, faBookmark } from "@fortawesome/free-solid-svg-icons";
 
 class Header extends React.Component {
-
   render() {
-
     return (
       <Container fluid className="mt-2 mb-5">
         <Row className="mb-5">
@@ -27,7 +25,10 @@ class Header extends React.Component {
             <h3 className="mr-3 mb-0">+NEW</h3>
             <FontAwesomeIcon icon={faBookmark} size="2x" className="my-auto" />
           </Button>
-          <Filter filterBookmarks={this.props.filterBookmarks} ratingFilter={this.props.ratingFilter}/>
+          <Filter
+            filterBookmarks={this.props.filterBookmarks}
+            ratingFilter={this.props.ratingFilter}
+          />
         </Row>
       </Container>
     );
