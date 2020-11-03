@@ -77,10 +77,10 @@ class App extends React.Component {
 
   handleUpdateBookmark = (id) => {
     console.log("handle update", id);
-    let title = document.getElementById("expanded-form-title").value;
-    let url = document.getElementById("expanded-form-url").value;
-    let rating = +document.getElementById("expanded-form-rating").value;
-    let desc = document.getElementById("expanded-form-desc").value;
+    let title = document.getElementById(`expanded-form-title-${id}`).value;
+    let url = document.getElementById(`expanded-form-url-${id}`).value;
+    let rating = +document.getElementById(`expanded-form-rating-${id}`).value;
+    let desc = document.getElementById(`expanded-form-desc-${id}`).value;
 
 
     let patchBookmark = {

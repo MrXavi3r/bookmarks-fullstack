@@ -49,6 +49,9 @@ class BookmarkExpand extends React.Component {
   //     };
   //   });
   // };
+
+  //each form could have book id
+  //onsubmit 
   render() {
     return (
       // consider implementing controlled input components for update bookmark func
@@ -56,7 +59,7 @@ class BookmarkExpand extends React.Component {
         className="my-3 w-75 mx-auto"
         // onSubmit={(ev) => this.props.updateBookmark(ev, this.props.id)}
       >
-        <Form.Group controlId="expanded-form-title">
+        <Form.Group controlId={`expanded-form-title-${this.props.id}`}>
           <Form.Label>TITLE</Form.Label>
           <Form.Control
             type="text"
@@ -65,7 +68,7 @@ class BookmarkExpand extends React.Component {
             required
           />
         </Form.Group>
-        <Form.Group controlId="expanded-form-url">
+        <Form.Group controlId={`expanded-form-url-${this.props.id}`}>
           <Form.Label>URL</Form.Label>
           <Form.Control
             type="text"
@@ -74,7 +77,7 @@ class BookmarkExpand extends React.Component {
             required
           />
         </Form.Group>
-        <Form.Group controlId="expanded-form-rating">
+        <Form.Group controlId={`expanded-form-rating-${this.props.id}`}>
           <Form.Label>RATING</Form.Label>
           <Form.Control
             as="select"
@@ -89,7 +92,7 @@ class BookmarkExpand extends React.Component {
             <option value="5">5</option>
           </Form.Control>
         </Form.Group>
-        <Form.Group controlId="expanded-form-desc">
+        <Form.Group controlId={`expanded-form-desc-${this.props.id}`}>
           <Form.Label>DESCRIPTION</Form.Label>
           <Form.Control
             as="textarea"

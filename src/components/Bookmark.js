@@ -5,7 +5,7 @@ import BookmarkExpand from "./BookmarkExpand";
 const Bookmark = (props) => {
   
   return (
-    <Container>
+    <Container className='my-1'>
       <Row>
           <Accordion.Toggle
             variant="link"
