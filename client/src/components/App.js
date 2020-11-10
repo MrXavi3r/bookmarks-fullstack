@@ -76,7 +76,6 @@ class App extends React.Component {
   };
 
   handleUpdateBookmark = (id) => {
-    console.log("handle update", id);
     let title = document.getElementById(`expanded-form-title-${id}`).value;
     let url = document.getElementById(`expanded-form-url-${id}`).value;
     let rating = +document.getElementById(`expanded-form-rating-${id}`).value;
@@ -92,13 +91,11 @@ class App extends React.Component {
 
 
     this.setState(() => {
-      console.log('set state')
       let bookArray = [...this.state.bookmarks];
       Object.assign(
         bookArray.find((book) => book.id === id),
         patchBookmark
       );
-      console.log(patchBookmark);
 
       return {
         bookmarks: bookArray,
