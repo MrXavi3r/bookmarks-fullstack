@@ -19,6 +19,7 @@ class App extends React.Component {
     addingBookmark: false,
     bookmarks: [],
     ratingFilter: 0,
+    error: false,
   };
 
   componentDidMount() {
@@ -81,14 +82,12 @@ class App extends React.Component {
     let rating = +document.getElementById(`expanded-form-rating-${id}`).value;
     let desc = document.getElementById(`expanded-form-desc-${id}`).value;
 
-
     let patchBookmark = {
       title,
       url,
       rating,
       desc,
     };
-
 
     this.setState(() => {
       let bookArray = [...this.state.bookmarks];
